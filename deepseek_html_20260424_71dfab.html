@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Медоварня | Традиции русской медоварни</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== STYLES ===== */
+    :root {
+      --gold:        #d43737;
+      --gold-dark:   #b81f1f;
+      --gold-light:  #e86868;
+      --amber:       #c02c2c;
+      --brown:       #5C3317;
+      --bg-0:        #080604;
+      --bg-1:        #100C08;
+      --bg-2:        #1A1410;
+      --bg-3:        #261C12;
+      --bg-4:        #342417;
+      --glass:       rgba(20, 14, 8, 0.82);
+      --gold-glass:  rgba(212, 175, 55, 0.08);
+      --gold-glass2: rgba(212, 175, 55, 0.15);
+      --text-1:      #F8EDD8;
+      --text-2:      #E0CBA8;
+      --text-3:      #A89070;
+      --text-4:      #705840;
+      --border:      rgba(212, 175, 55, 0.18);
+      --border-2:    rgba(212, 175, 55, 0.35);
+      --shadow-s:    0 2px 12px rgba(0, 0, 0, 0.5);
+      --shadow-m:    0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212,175,55,0.08);
+      --shadow-l:    0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212,175,55,0.08);
+      --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.25);
+      --r-s:  10px;
+      --r-m:  16px;
+      --r-l:  24px;
+      --r-xl: 32px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --t: all 0.3s var(--ease);
+      --nav-h: 68px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+    body {
+      font-family: 'Raleway', system-ui, sans-serif;
+      background: var(--bg-0);
+      color: var(--text-1);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; }
+    ul { list-style: none; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-1); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-4); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    .nav-glass {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      height: var(--nav-h);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: var(--glass);
+      border-bottom: 1px solid var(--border);
+      transition: var(--t);
+    }
+    .nav-glass.scrolled {
+      background: rgba(8, 6, 4, 0.96);
+      border-color: var(--border-2);
+      box-shadow: var(--shadow-s);
+    }
+    .nav-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .logo-icon { font-size: 26px; animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-6px) rotate(5deg); } }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-link {
+      display: block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-3);
+      letter-spacing: 0.4px;
+      transition: var(--t);
+    }
+    .nav-link:hover { color: var(--text-1); background: var(--gold-glass); }
+    .nav-link.active { color: var(--gold); background: var(--gold-glass2); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .profile-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--gold-glass);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      color: var(--text-2);
+      font-size: 13px;
+      font-weight: 600;
+      transition: var(--t);
+    }
+    .profile-btn:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--bg-0);
+      transform: translateY(-1px);
+    }
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: var(--gold-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--r-s);
+      padding: 10px;
+      transition: var(--t);
+    }
+    .burger span {
+      display: block;
+      height: 2px;
+      background: var(--text-2);
+      border-radius: 2px;
+      transition: var(--t);
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 850;
+      backdrop-filter: blur(4px);
+    }
+    .mobile-overlay.show { display: block; }
+
+    /* Hero */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: calc(var(--nav-h) + 40px) 24px 80px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,175,55,0.12) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 80% 80%, rgba(139,69,19,0.15) 0%, transparent 60%),
+                  linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 860px; width: 100%; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px;
+      background: var(--gold-glass2); border: 1px solid var(--border-2); border-radius: 24px;
+      font-size: 13px; font-weight: 600; color: var(--gold-light); margin-bottom: 32px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -1px;
+      color: var(--text-1);
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 60%, var(--amber) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle { font-size: clamp(15px, 2vw, 19px); color: var(--text-3); margin-bottom: 40px; }
+    .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+    .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
+      border-radius: 30px; font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
+      border: none; cursor: pointer; transition: var(--t); position: relative; overflow: hidden;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+      color: var(--bg-0); box-shadow: var(--shadow-gold);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(212,175,55,0.4); }
+    .btn-secondary {
+      background: transparent; color: var(--text-2); border: 1px solid var(--border-2);
+      backdrop-filter: blur(10px);
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .full-width { width: 100%; justify-content: center; }
+
+    .hero-stats {
+      display: inline-flex; align-items: center; gap: 24px; padding: 18px 32px;
+      background: var(--gold-glass); border: 1px solid var(--border); border-radius: var(--r-l);
+    }
+    .stat { text-align: center; }
+    .stat-num { display: block; font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--gold); }
+    .stat-label { font-size: 12px; color: var(--text-3); font-weight: 600; }
+    .stat-divider { width: 1px; height: 40px; background: var(--border); }
+
+    /* Sections */
+    section { padding: 100px 0; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-badge {
+      display: inline-block; padding: 5px 16px; background: var(--gold-glass);
+      border: 1px solid var(--border-2); border-radius: 20px; font-size: 11px;
+      font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 12px;
+    }
+    .section-subtitle { color: var(--text-3); font-size: 16px; max-width: 520px; margin: 0 auto; }
+
+    .about-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .about-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-l);
+      padding: 36px 28px; transition: var(--t);
+    }
+    .about-card:hover { transform: translateY(-10px); border-color: var(--border-2); }
+    .about-icon { font-size: 44px; display: inline-block; animation: float 4s ease-in-out infinite; }
+    .about-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--text-1); margin-bottom: 10px; }
+    .about-card p { color: var(--text-3); font-size: 14px; }
+
+    /* Menu */
+    .menu-tabs { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 48px; }
+    .tab-btn {
+      padding: 9px 22px; background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: 24px; color: var(--text-3); font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: var(--t);
+    }
+    .tab-btn.active { background: var(--gold); border-color: var(--gold); color: var(--bg-0); }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .menu-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-l);
+      overflow: hidden; cursor: pointer; transition: var(--t);
+    }
+    .menu-card:hover { transform: translateY(-8px); border-color: var(--border-2); }
+    .menu-card-image { position: relative; height: 240px; overflow: hidden; }
+    .menu-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+    .menu-card:hover .menu-card-image img { transform: scale(1.08); }
+    .menu-card-overlay {
+      position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(8,6,4,0.9) 100%);
+      display: flex; align-items: flex-end; justify-content: center; padding: 20px; opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .menu-card:hover .menu-card-overlay { opacity: 1; }
+    .btn-view { padding: 9px 22px; background: var(--gold); color: var(--bg-0); border-radius: 20px; font-weight: 700; }
+    .menu-card-badge {
+      position: absolute; top: 14px; right: 14px; padding: 5px 12px;
+      background: rgba(8,6,4,0.85); border: 1px solid var(--border); border-radius: 16px;
+      font-size: 13px; font-weight: 700; color: var(--gold); backdrop-filter: blur(8px);
+    }
+    .menu-card-content { padding: 18px 20px 20px; }
+    .menu-card-content h3 { font-size: 17px; font-weight: 700; color: var(--text-1); margin-bottom: 4px; }
+    .menu-card-content p { font-size: 13px; color: var(--text-3); }
+
+    /* Booking */
+    .booking-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .booking-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-l);
+      padding: 32px 28px; transition: var(--t); display: flex; flex-direction: column;
+    }
+    .booking-card.featured { border-color: var(--gold); background: linear-gradient(160deg, var(--bg-3) 0%, var(--bg-2) 100%); }
+    .booking-tag {
+      position: absolute; top: 18px; right: 18px; padding: 3px 10px;
+      background: var(--amber); color: #fff; border-radius: 8px; font-size: 10px; font-weight: 700;
+    }
+    .booking-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; margin-bottom: 8px; }
+    .booking-price span { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: var(--gold); font-weight: 700; }
+    .btn-booking {
+      width: 100%; padding: 13px; background: var(--gold-glass); border: 1px solid var(--border-2);
+      border-radius: var(--r-s); color: var(--text-1); font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: var(--t);
+    }
+    .btn-booking:hover { background: var(--gold); color: var(--bg-0); }
+
+    /* Reviews */
+    .reviews-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; }
+    .btn-add-review {
+      display: flex; align-items: center; gap: 8px; padding: 12px 22px;
+      background: var(--gold); border: none; border-radius: 24px; color: var(--bg-0);
+      font-size: 14px; font-weight: 700; cursor: pointer;
+    }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+    .review-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-l);
+      padding: 28px; position: relative;
+    }
+    .review-avatar {
+      width: 50px; height: 50px; background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .review-rating .star-display { color: var(--text-4); }
+    .review-rating .star-display.filled { color: var(--gold); }
+    .btn-delete-review {
+      position: absolute; top: 16px; right: 16px; background: rgba(220,50,47,0.1);
+      border: 1px solid rgba(220,50,47,0.25); border-radius: 8px; color: #E57373;
+      font-size: 12px; padding: 5px 11px; cursor: pointer;
+    }
+
+    /* Contacts */
+    .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .contact-card {
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-l);
+      padding: 36px 24px; text-align: center; transition: var(--t);
+    }
+    .contact-icon { width: 64px; height: 64px; margin: 0 auto 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* Footer */
+    .footer { background: var(--bg-1); border-top: 1px solid var(--border); padding: 72px 0 32px; }
+    .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+
+    /* Modal */
+    .modal { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
+    .modal.show { display: flex; }
+    .modal-backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(12px); }
+    .modal-content {
+      position: relative; background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--r-xl); padding: 36px; max-width: 500px; width: 100%;
+      max-height: 92vh; overflow-y: auto;
+    }
+    .modal-product { max-width: 680px; padding: 0; overflow: hidden; }
+    .modal-product-img-wrap { height: 360px; overflow: hidden; flex-shrink: 0; background: var(--bg-1); display: flex; align-items: center; justify-content: center; }
+    .modal-product-img-wrap img { width: 100%; height: 100%; object-fit: contain; background: var(--bg-1); }
+    .modal-product-body { padding: 28px 32px 32px; }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px; width: 36px; height: 36px;
+      background: var(--bg-4); border: 1px solid var(--border); border-radius: 50%;
+      color: var(--text-2); font-size: 22px; cursor: pointer;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 13px 16px; background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: var(--r-s); color: var(--text-1);
+    }
+    .toast {
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+      background: var(--bg-3); border: 1px solid var(--border); border-radius: 30px;
+      padding: 14px 24px; color: var(--text-1); font-weight: 600;
+      opacity: 0; transition: all 0.4s; pointer-events: none; z-index: 9999;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(8,6,4,0.97); padding: 20px; }
+      .about-grid, .booking-grid, .contact-grid, .footer-content { grid-template-columns: 1fr; }
+      .modal-product-img-wrap { height: 280px; }
+    }
+    [data-reveal] { opacity: 0; transform: translateY(32px); transition: 0.7s var(--ease); }
+    [data-reveal].visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<nav class="nav-glass" id="navbar">
+  <div class="nav-container">
+    <a href="#hero" class="logo"><span class="logo-icon">🍯</span><span>Медоварня</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="nav-link active">Главная</a></li>
+      <li><a href="#about" class="nav-link">О нас</a></li>
+      <li><a href="#menu" class="nav-link">Меню</a></li>
+      <li><a href="#booking" class="nav-link">Бронирование</a></li>
+      <li><a href="#reviews" class="nav-link">Отзывы</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="profile-btn" id="profileBtn"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M10 10c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span class="profile-btn-text">Войти</span></button>
+      <button class="burger" id="burgerBtn"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section id="hero" class="hero"><div class="hero-bg"></div><div class="hero-content">
+  <div class="hero-badge"><span>⭐</span><span>4.82 · 773 посещения · 55 отзывов</span></div>
+  <h1 class="hero-title">Прикоснитесь<br><em>к традициям</em><br>русской медоварни</h1>
+  <p class="hero-subtitle">Дегустация настоящих медовых напитков в атмосферном историческом пространстве</p>
+  <div class="hero-buttons"><a href="#booking" class="btn-primary">Забронировать место</a><a href="#about" class="btn-secondary">Узнать больше</a></div>
+  <div class="hero-stats"><div class="stat"><span class="stat-num">20+</span><span class="stat-label">лет традиций</span></div><div class="stat-divider"></div><div class="stat"><span class="stat-num">12</span><span class="stat-label">сортов мёда</span></div><div class="stat-divider"></div><div class="stat"><span class="stat-num">3 000+</span><span class="stat-label">довольных гостей</span></div></div>
+</div></section>
+
+<section id="about" class="about-section"><div class="container"><div class="section-header"><span class="section-badge">Что вас ожидает</span><h2 class="section-title">Погружение в историю</h2><p class="section-subtitle">Каждый визит — это путешествие в глубину веков русских питейных традиций</p></div><div class="about-grid"><div class="about-card"><div class="about-icon-wrap"><span class="about-icon">📜</span></div><h3>История традиций</h3><p>Узнайте, что пили на Руси до появления чая, кофе и крепкого спиртного</p></div><div class="about-card"><div class="about-icon-wrap"><span class="about-icon">🏺</span></div><h3>Древняя посуда</h3><p>Увидите, из какой посуды пили наши предки и услышите связанные с ней легенды</p></div><div class="about-card"><div class="about-icon-wrap"><span class="about-icon">🍯</span></div><h3>Секреты медоварения</h3><p>Раскроем, зачем бочки с мёдом на десятилетия закапывали в землю</p></div><div class="about-card"><div class="about-icon-wrap"><span class="about-icon">💫</span></div><h3>Обычаи и поверья</h3><p>Откуда пошли выражения «наесться досыта» и «медовый месяц»</p></div></div></div></section>
+
+<section id="menu" class="menu-section"><div class="container"><div class="section-header"><span class="section-badge">Наша продукция</span><h2 class="section-title">Меню медоварни</h2><p class="section-subtitle">Авторские напитки по старинным рецептам и деликатесы от местных производителей</p></div>
+<div class="menu-tabs"><button class="tab-btn active" data-filter="all">Всё меню</button><button class="tab-btn" data-filter="drinks">Напитки</button><button class="tab-btn" data-filter="food">Закуски</button><button class="tab-btn" data-filter="sets">Сеты</button></div>
+<div class="menu-grid" id="menuGrid">
+  <!-- Карточка 1 -->
+  <div class="menu-card" data-category="food" data-name="Ростовский лук" data-price="250 ₽" data-description="Луковый ремесленный мармелад, луковое варенье из ростовского лука. Настоящий гастросувенир из Ростова." data-img="luk.jpg">
+    <div class="menu-card-image"><img src="luk.jpg" alt="Ростовский лук" loading="lazy"><div class="menu-card-overlay"><button class="btn-view">Подробнее</button></div><div class="menu-card-badge">250 ₽</div></div>
+    <div class="menu-card-content"><h3>Ростовский лук</h3><p>Луковый ремесленный мармелад</p></div>
+  </div>
+  <!-- Карточка 2: Душепарка классическая с файла XXL (2).jfif -->
+  <div class="menu-card" data-category="drinks" data-name="Душепарка Классическая" data-price="350 ₽" data-description="Традиционный медовый напиток. Состав: мед, сок клюквы, сок брусники, цедра лимона, кардамон, хмель. 0.5 л. Родом из Ярославской губернии от XV в." data-img="XXL (2).jfif">
+    <div class="menu-card-image"><img src="XXL%20(2).jfif" alt="Душепарка Классическая" loading="lazy"><div class="menu-card-overlay"><button class="btn-view">Подробнее</button></div><div class="menu-card-badge">350 ₽</div></div>
+    <div class="menu-card-content"><h3>Душепарка Классическая</h3><p>Мёд, клюква, брусника, кардамон</p></div>
+  </div>
+  <!-- Карточка 3: Гобитель -->
+  <div class="menu-card" data-category="drinks" data-name="Гобитель" data-price="320 ₽" data-description="Медовый взвар, популярный в XVIII–XIX вв. Состав: мед, имбирь, гвоздика, цедра лимона, кардамон. 0.5 л. Сделано в Ростове Великом." data-img="XXL (2).jfif">
+    <div class="menu-card-image"><img src="XXL%20(2).jfif" alt="Гобитель" loading="lazy"><div class="menu-card-overlay"><button class="btn-view">Подробнее</button></div><div class="menu-card-badge">320 ₽</div></div>
+    <div class="menu-card-content"><h3>Гобитель</h3><p>Медовый взвар, имбирь, гвоздика</p></div>
+  </div>
+  <!-- Карточка 4: Мурса (смородина/лаванда) -->
+  <div class="menu-card" data-category="drinks" data-name="Мурса" data-price="280 ₽" data-description="Авторский напиток: смородина и лаванда. Освежающий, не сладкий. 0.5 л. Сделано в Ростове Великом." data-img="XXL (2).jfif">
+    <div class="menu-card-image"><img src="XXL%20(2).jfif" alt="Мурса" loading="lazy"><div class="menu-card-overlay"><button class="btn-view">Подробнее</button></div><div class="menu-card-badge">280 ₽</div></div>
+    <div class="menu-card-content"><h3>Мурса</h3><p>Смородина / Лаванда</p></div>
+  </div>
+  <!-- Карточка 5: Мягкая карамель (ассорти из XXL (1).jfif) -->
+  <div class="menu-card" data-category="food" data-name="Мягкая карамель Ассорти" data-price="390 ₽" data-description="Натуральная мягкая карамель. Вкусы: Шоколад, Кофе, Амаретто, Медовая. Без искусственных добавок. Каждое изделие уникально." data-img="XXL%20(1).jfif">
+    <div class="menu-card-image"><img src="XXL%20(1).jfif" alt="Мягкая карамель" loading="lazy"><div class="menu-card-overlay"><button class="btn-view">Подробнее</button></div><div class="menu-card-badge">390 ₽</div></div>
+    <div class="menu-card-content"><h3>Мягкая карамель</h3><p>Шоколад, Кофе, А
